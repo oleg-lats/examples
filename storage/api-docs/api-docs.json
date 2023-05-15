@@ -1,0 +1,448 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "example API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "/api",
+            "description": "CURRENT"
+        }
+    ],
+    "paths": {
+        "/submitted": {
+            "get": {
+                "tags": [
+                    "Submitted"
+                ],
+                "summary": "Get Submitted",
+                "description": "Get submitted list",
+                "parameters": [
+                    {
+                        "name": "sortDesc",
+                        "in": "query",
+                        "description": "Sort Desc",
+                        "schema": {
+                            "type": "string",
+                            "example": "name"
+                        }
+                    },
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "description": "Sort By",
+                        "schema": {
+                            "type": "string",
+                            "example": "name"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status",
+                        "schema": {
+                            "type": "string",
+                            "example": "name"
+                        }
+                    },
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Status",
+                        "schema": {
+                            "type": "integer",
+                            "example": "10"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search",
+                        "schema": {
+                            "type": "string",
+                            "example": "search"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search",
+                        "schema": {
+                            "type": "string",
+                            "example": "search"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetDatatablesSubmittedResource"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login user",
+                "description": "Get user token",
+                "operationId": "99d66635c4992aeaa6aa44ff653d0563",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User.LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User.GetTokenResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/user": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User Info",
+                "description": "Get user info",
+                "operationId": "32d03117b496ae02c2543b61438d24ad",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User.GetInfo"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/user-reports": {
+            "get": {
+                "tags": [
+                    "User Reports"
+                ],
+                "summary": "Get user reports by user",
+                "description": "Get user reports list",
+                "parameters": [
+                    {
+                        "name": "sortDesc",
+                        "in": "query",
+                        "description": "Sort Desc",
+                        "schema": {
+                            "type": "string",
+                            "example": "name"
+                        }
+                    },
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "description": "Sort By",
+                        "schema": {
+                            "type": "string",
+                            "example": "name"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status",
+                        "schema": {
+                            "type": "string",
+                            "example": "name"
+                        }
+                    },
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Status",
+                        "schema": {
+                            "type": "integer",
+                            "example": "10"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search",
+                        "schema": {
+                            "type": "string",
+                            "example": "search"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserReportResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GetDatatablesSubmittedResource": {
+                "description": "Datatables Submitted List",
+                "properties": {
+                    "status": {
+                        "description": "Status of request",
+                        "type": "string",
+                        "example": "success"
+                    },
+                    "message": {
+                        "description": "Message",
+                        "type": "string",
+                        "example": "OK"
+                    },
+                    "total": {
+                        "description": "Total count of table",
+                        "type": "integer",
+                        "example": 12345
+                    },
+                    "data": {
+                        "description": "Submitted Items",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#components/schemas/GetSubmittedListResource.SubmittedResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "GetUserReportResource": {
+                "description": "User Report Resource",
+                "properties": {
+                    "status": {
+                        "description": "Status of request",
+                        "type": "string",
+                        "example": "success"
+                    },
+                    "message": {
+                        "description": "Message",
+                        "type": "string",
+                        "example": "OK"
+                    },
+                    "total": {
+                        "description": "Total count of table",
+                        "type": "integer",
+                        "example": 12345
+                    },
+                    "data": {
+                        "description": "User Report Items",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#components/schemas/GetUserReporstResource.ReportResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "User.LoginRequest": {
+                "required": [
+                    "email",
+                    "password",
+                    "remember_me"
+                ],
+                "properties": {
+                    "email": {
+                        "description": "User Email",
+                        "type": "email",
+                        "example": "admin@test.local"
+                    },
+                    "password": {
+                        "description": "User Password",
+                        "type": "string",
+                        "example": "admin@test.local"
+                    },
+                    "remember_me": {
+                        "description": "Remember Me",
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "type": "object"
+            },
+            "User.GetTokenResource": {
+                "description": "Get User Token",
+                "properties": {
+                    "accessToken": {
+                        "description": "Access Token",
+                        "type": "string",
+                        "example": "1|fhakldfhlajdflasdjfhlasdjhflsadjhflsajfdh"
+                    },
+                    "tokenType": {
+                        "description": "Token Type",
+                        "type": "string",
+                        "example": "Bearer"
+                    }
+                },
+                "type": "object"
+            },
+            "User.GetInfo": {
+                "description": "User Reports list",
+                "properties": {
+                    "id": {
+                        "description": "ID of brand",
+                        "type": "integer",
+                        "example": 12345
+                    },
+                    "firstName": {
+                        "description": "User Name",
+                        "type": "string",
+                        "example": "Joe"
+                    },
+                    "lastName": {
+                        "description": "Last Name",
+                        "type": "string",
+                        "example": "Pedestrian"
+                    },
+                    "fullName": {
+                        "description": "User Full Name",
+                        "type": "integer",
+                        "example": "Joe Pedestrian"
+                    },
+                    "phone": {
+                        "description": "User Phone",
+                        "type": "string",
+                        "example": "11231234567"
+                    },
+                    "email": {
+                        "description": "User Email",
+                        "type": "string",
+                        "example": "test@email.com"
+                    }
+                },
+                "type": "object"
+            },
+            "GetUserReporstResource.ReportResource": {
+                "description": "User Reports list",
+                "properties": {
+                    "id": {
+                        "description": "ID of brand",
+                        "type": "integer",
+                        "example": 12345
+                    },
+                    "report_name": {
+                        "description": "Report name",
+                        "type": "string",
+                        "example": "Hstamine"
+                    },
+                    "score_total": {
+                        "description": "Score Total",
+                        "type": "integer",
+                        "example": "43"
+                    },
+                    "percentage_total": {
+                        "description": "Percentage Total",
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "user_score_total": {
+                        "description": "User Score Total",
+                        "type": "integer",
+                        "example": "43"
+                    },
+                    "user_percentage_total": {
+                        "description": "User Percentage Total",
+                        "type": "number",
+                        "format": "float",
+                        "example": 35.7
+                    },
+                    "created_at": {
+                        "description": "Created at",
+                        "type": "string",
+                        "example": "May 09, 2023 21:33"
+                    }
+                },
+                "type": "object"
+            },
+            "GetSubmittedListResource.SubmittedResource": {
+                "description": "Submitted list",
+                "properties": {
+                    "id": {
+                        "description": "ID of File",
+                        "type": "integer",
+                        "example": 12345
+                    },
+                    "name": {
+                        "description": "Name of File",
+                        "type": "string",
+                        "example": "sitename"
+                    },
+                    "tmpName": {
+                        "description": "Name of File",
+                        "type": "string",
+                        "example": "tmpName"
+                    },
+                    "slug": {
+                        "description": "Slug of File",
+                        "type": "string",
+                        "example": "slug-name"
+                    },
+                    "size": {
+                        "description": "Size of File",
+                        "type": "integer",
+                        "example": 12345
+                    },
+                    "status": {
+                        "description": "Status of File",
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearer_token": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}

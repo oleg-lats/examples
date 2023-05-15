@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+th.example-table-header {
+    font-size: 0.8em !important;
+    text-transform: uppercase;
+    background-color: #cfe2ff !important;
+}
+
+th.example-table-total {
+    font-size: 0.8em !important;
+    text-transform: uppercase;
+    background-color: #cfe2ff !important;
+}
+
+th.example-table-total-number {
+    font-size: 1.1em !important;
+    background-color: #cfe2ff !important;
+}

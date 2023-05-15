@@ -1,0 +1,29 @@
+{
+  "hash": "ab36fcbc",
+  "browserHash": "8bb59eb0",
+  "optimized": {
+    "laravel-datatables-vite": {
+      "src": "../../node_modules/laravel-datatables-vite/js/index.js",
+      "file": "laravel-datatables-vite.js",
+      "fileHash": "e4ac5114",
+      "needsInterop": false
+    },
+    "alpinejs": {
+      "src": "../../node_modules/alpinejs/dist/module.esm.js",
+      "file": "alpinejs.js",
+      "fileHash": "9f9cadaa",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "9527463d",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-4EOJPDL2": {
+      "file": "chunk-4EOJPDL2.js"
+    }
+  }
+}
